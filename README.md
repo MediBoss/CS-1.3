@@ -18,6 +18,7 @@ Notes, Exercises, and projects for my <a href="https://github.com/Make-School-Co
 * Maps & HashTabls
 * Sets & Circular Buffers
 * Trees and BST
+* Continous Integration with Travis CI
 
 
 ### Acknoledgements
