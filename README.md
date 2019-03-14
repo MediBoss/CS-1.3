@@ -21,9 +21,9 @@ Notes, Exercises, and projects for my <a href="https://github.com/Make-School-Co
 * Continous Integration with Travis CI
 
 
-### Acknoledgements
+### Acknowledgements
 
-* My instructor
+* My instructor 
 * Stack Overflow
 * Motivation
 
