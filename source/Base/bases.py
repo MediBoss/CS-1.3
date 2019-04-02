@@ -17,9 +17,11 @@ def decode(digits, base):
         Decode given digits in given base to number in base 10.
         - Parameters: 
             - digits: str -- string representation of number (in given base)
-            -base: int -- base of given number
-        Returns: int -- integer representation of number (in base 10)
-        WorstCase: 
+            - base: int -- base of given number
+        - Returns: int -- integer representation of number (in base 10)
+
+        - Best Case :
+        - Worst Case:  
     """
     assert 2 <= base <= 36, 'base is out of range: {}'.format(base)
     length = len(digits)
@@ -44,7 +46,17 @@ def encode(number, base):
     assert 2 <= base <= 36, 'base is out of range: {}'.format(base)
     # Handle unsigned numbers only for now
     assert number >= 0, 'number is negative: {}'.format(number)
+
     # TODO: Encode number in binary (base 2)
+    mutated_number = number
+    converted_value = ""
+    
+    while mutated_number > 0:
+        result, remainder = (mutated_number/base, mutated_number%base)
+        converted_value += str(remainder)
+        mutated_number = result
+
+    return converted_value[::-1]
     # ...
     # TODO: Encode number in hexadecimal (base 16)
     # ...
@@ -74,8 +86,8 @@ def convert(digits, base1, base2):
 def main():
     """Read command-line arguments and convert given digits between bases."""
 
-    digits = "7Z"
-    print(decode(digits, 36))
+    number = 6
+    print(encode(number, 2))
     # import sys
     # args = sys.argv[1:]  # Ignore script file name
     # if len(args) == 3:
