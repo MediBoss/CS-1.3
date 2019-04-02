@@ -36,32 +36,32 @@ def decode(digits, base):
     return converted_digits
     
 
-
 def encode(number, base):
     """Encode given number in base 10 to digits in given base.
     number: int -- integer representation of number (in base 10)
     base: int -- base to convert to
     return: str -- string representation of number (in given base)"""
-    # Handle up to base 36 [0-9a-z]
     assert 2 <= base <= 36, 'base is out of range: {}'.format(base)
-    # Handle unsigned numbers only for now
     assert number >= 0, 'number is negative: {}'.format(number)
 
-    # TODO: Encode number in binary (base 2)
     mutated_number = number
     converted_value = ""
-    
-    while mutated_number > 0:
-        result, remainder = (mutated_number/base, mutated_number%base)
-        converted_value += str(remainder)
-        mutated_number = result
+    if base == 2:
+        while mutated_number > 0:
+            result, remainder = (mutated_number/base, mutated_number%base)
+            converted_value += str(remainder)
+            mutated_number = result
 
+    elif base == 16 or base == 36:
+        quotient, remainder = (number/base, number%base)
+        while quotient > 0:
+            if find_key(remainder) is not None:
+                converted_value += find_key(remainder)
+            else:
+                converted_value += str(remainder)
+            
+            quotient, remainder = (quotient/base, quotient%base)
     return converted_value[::-1]
-    # ...
-    # TODO: Encode number in hexadecimal (base 16)
-    # ...
-    # TODO: Encode number in any base (2 up to 36)
-    # ...
 
 
 def convert(digits, base1, base2):
@@ -83,11 +83,18 @@ def convert(digits, base1, base2):
     # ...
 
 
+def find_key(target_value):
+
+    for key,value in BASE_36.items():
+        if value == target_value:
+            return key
+    return None
+
 def main():
     """Read command-line arguments and convert given digits between bases."""
 
-    number = 6
-    print(encode(number, 2))
+    number = 543
+    print(encode(number, 36))
     # import sys
     # args = sys.argv[1:]  # Ignore script file name
     # if len(args) == 3:
