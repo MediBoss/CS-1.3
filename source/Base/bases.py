@@ -12,18 +12,15 @@ def decode(digits, base):
             - digits: str -- string representation of number (in given base)
             - base: int -- base of given number
         - Returns: int -- integer representation of number (in base 10) """
+
     assert 2 <= base <= 36, 'base is out of range: {}'.format(base)
     length = len(digits)
     converted_digits = 0
 
     for digit in digits:
         length -= 1
-        if digit in BASE_36:
-            digit = BASE_36.get(digit)
-
-        converted_digits += (int(digit) * pow(base, length))
+        converted_digits += string.printable.index(digit.lower()) * pow(base, length)
     return converted_digits
-    
 
 def encode(number, base):
     """Encode given digits in given base to number in base 10.
@@ -35,24 +32,16 @@ def encode(number, base):
     assert 2 <= base <= 36, 'base is out of range: {}'.format(base)
     assert number >= 0, 'number is negative: {}'.format(number)
 
-    mutated_number = number
     converted_value = ""
-    if base == 2:
-        while mutated_number > 0:
-            result, remainder = (mutated_number/base, mutated_number%base)
-            converted_value += str(remainder)
-            mutated_number = result
+    if number == 0:
+        return "0"
 
-    elif base == 16 or base == 36:
-        quotient, remainder = (number/base, number%base)
-        while quotient > 0:
-            if find_key(remainder) is not None:
-                converted_value += find_key(remainder)
-            else:
-                converted_value += str(remainder)
-            
-            quotient, remainder = (quotient/base, quotient%base)
-    return converted_value[::-1]
+    while number != 0:
+        remainder = string.printable[number % base]
+        converted_value = str(remainder) + converted_value
+        number = number // base
+        
+    return converted_value
 
 
 def convert(digits, base1, base2):
@@ -122,8 +111,8 @@ def find_key(target_value):
 def main():
     """Read command-line arguments and convert given digits between bases."""
 
-    number = "1111111"
-    print(convert(number, 2, 16))
+    number = "10"
+    print(decode(number, 2))
     # import sys
     # args = sys.argv[1:]  # Ignore script file name
     # if len(args) == 3:
