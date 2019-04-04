@@ -3,9 +3,6 @@
 import string
 import sys
 
-BASE_36 = {"A": 10, "B": 11,"C": 12, "D": 13, "E": 14, "F": 15, "G": 16, "H": 17,"I": 18, "J": 19, "K": 20, "L": 21, "M": 22, "N": 23, "O": 24, "P": 25, "Q": 26, "R": 27, "S": 28, "T": 29,"U": 30, "V": 31, "W": 32, "X": 33, "Y":34, "Z": 35}
-BINARY_TO_HEXA = {"A": 1010, "B": 1011,"C": 1100, "D": 1101, "E": 1110, "F": 1111}
-
 def decode(digits, base):
     """Decode given digits in given base to number in base 10.
         - Parameters: 
@@ -54,77 +51,26 @@ def convert(digits, base1, base2):
     
     assert 2 <= base1 <= 36, 'base1 is out of range: {}'.format(base1)
     assert 2 <= base2 <= 36, 'base2 is out of range: {}'.format(base2)
+    base_ten = decode(digits, base1)
+    result = str(encode(base_ten, base2))
+    return result
 
-    # conversion 2 <-> 10
-    if base1 == 2 and base2 == 10:
-        return decode(digits, base1)
-    # conversion 10 <-> 2
-    elif base1 == 10 and base2 == 2:
-        return encode(int(digits), base2)
-
-    # conversion 2 <-> 16
-    # TODO: Convert digits from base 2 to base 16 (and vice versa)
-    elif base1 == 2 and base2 == 16:
-        return to_hexa(digits, base2)
-    elif base1 == 16 and base2 == 2:
-        return to_binary(digits, base2)
-
-    # conversion 10 <-> 16
-    elif base1 == 10 and base2 == 16:
-        return encode(int(digits), base2)
-    # conversion 16 <-> 10
-    elif base1 == 16 and base2 == 10:
-        return decode(digits, base1)
-
-    # conversion any base <-> any base
-    # TODO: Convert digits from any base to any base (2 up to 36)
-
-def to_binary(digits, base):
-    
-    converted_value = ""
-    for digit in digits:
-        if digit in BINARY_TO_HEXA:
-            converted_value += str(BINARY_TO_HEXA.get(digit))
-        else:
-            converted_value += encode(int(digit), base)
-    return converted_value
-
-def to_hexa(digits, base):
-    converted_value = ""
-    for digit in digits:
-        print(digit)
-        if digit in BINARY_TO_HEXA:
-            print(digit)
-            converted_value += str(BINARY_TO_HEXA.get(digit))
-        else:
-            converted_value += encode(int(digit), base)
-    return converted_value
-    
-
-def find_key(target_value):
-    ''' Find the key of a given value in a dictionary '''
-    for key,value in BASE_36.items():
-        if value == target_value:
-            return key
-    return None
 
 def main():
     """Read command-line arguments and convert given digits between bases."""
 
-    number = "10"
-    print(decode(number, 2))
-    # import sys
-    # args = sys.argv[1:]  # Ignore script file name
-    # if len(args) == 3:
-    #     digits = args[0]
-    #     base1 = int(args[1])
-    #     base2 = int(args[2])
-    #     # Convert given digits between bases
-    #     result = convert(digits, base1, base2)
-    #     print('{} in base {} is {} in base {}'.format(digits, base1, result, base2))
-    # else:
-    #     print('Usage: {} digits base1 base2'.format(sys.argv[0]))
-    #     print('Converts digits from base1 to base2')
+    import sys
+    args = sys.argv[1:]  # Ignore script file name
+    if len(args) == 3:
+        digits = args[0]
+        base1 = int(args[1])
+        base2 = int(args[2])
+        # Convert given digits between bases
+        result = convert(digits, base1, base2)
+        print('{} in base {} is {} in base {}'.format(digits, base1, result, base2))
+    else:
+        print('Usage: {} digits base1 base2'.format(sys.argv[0]))
+        print('Converts digits from base1 to base2')
 
 
 if __name__ == '__main__':
