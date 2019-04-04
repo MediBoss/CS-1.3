@@ -17,6 +17,11 @@ def linear_search_iterative(array, item):
 
 
 def linear_search_recursive(array, item, index=0):
+    '''
+    Return the index of item in sorted array or None if item is not found
+    Time Complexity: O(n)(n= size of array) - recusively calling our function n times
+    Space Complexity: O(1)
+    '''
     
     # base case
     if index >= len(array):
@@ -41,7 +46,7 @@ def binary_search(array, item):
 def binary_search_iterative(array, item):
     '''
         Return the index of item in sorted array or None if item is not found
-        Time Complexity: O(log n)(n= size of array) - Choice of the next element is one of several possibilities.
+        Time Complexity: O(log n)(n= size of array) - we must divide our array's size by 1/2 n times.
         Space Complexity: O(1)
     '''
     
@@ -64,12 +69,16 @@ def binary_search_iterative(array, item):
     return None
     
 def binary_search_recursive(array, item, left=None, right=None):
-    
+    '''
+    Return the index of item in sorted array or None if item is not found
+    Time Complexity: O(log n)(n= size of array) - Choice of the next element is one of several possibilities.
+    Space Complexity: O(1)
+    '''
     # Edge case
     if left == None:
         left = 0
         right = len(array) - 1
-        
+
     middle = int((left + right)/2)
 
     # Base cases
