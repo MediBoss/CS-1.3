@@ -13,6 +13,16 @@ def factorial(n):
 
 
 def factorial_iterative(n):
+    ''' 
+        Returns the product of the integers 1 through n for n >=0
+        Time Complexity : O(n) where n is the integer
+        Space Complexity : O(1)
+    '''
+    # edge case
+    if n == 1:
+        return n
+    if n == 0:
+        return 1
 
     result = 1
     while n != 0:
