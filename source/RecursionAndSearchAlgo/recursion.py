@@ -19,9 +19,7 @@ def factorial_iterative(n):
         Space Complexity : O(1)
     '''
     # edge case
-    if n == 1:
-        return n
-    if n == 0:
+    if n == 0 or n == 1:
         return 1
 
     result = 1

@@ -23,15 +23,18 @@ def linear_search_recursive(array, item, index=0):
     Space Complexity: O(1)
     '''
     
-    # base case
+    # base case 1 - if the index mathces the size of the array
     if index >= len(array):
         return None
+
+    # base case 2 = return the index if the item is found
     if array[index] == item:
         return index
+    # base case 3 - None is returned if array is empty
     if len(array) == 0:
         return None
 
-    # recursive case
+    # recursive case - pass the same parameter with the next index
     return linear_search_recursive(array, item, index+1)
 
 
@@ -39,8 +42,8 @@ def binary_search(array, item):
     """return the index of item in sorted array or None if item is not found"""
     # implement binary_search_iterative and binary_search_recursive below, then
     # change this to call your implementation to verify it passes all tests
-    #return binary_search_iterative(array, item)
-    return binary_search_recursive(array, item)
+    return binary_search_iterative(array, item)
+    #return binary_search_recursive(array, item)
 
 
 def binary_search_iterative(array, item):
@@ -66,13 +69,14 @@ def binary_search_iterative(array, item):
         elif array[middle] < item:
             # Shift the lower bound to the right if element at middle index to too high
             low_bound = middle + 1
-    return None
+    
+    return None # Item was never found 
     
 def binary_search_recursive(array, item, left=None, right=None):
     '''
     Return the index of item in sorted array or None if item is not found
-    Time Complexity: O(log n)(n= size of array) - Choice of the next element is one of several possibilities.
-    Space Complexity: O(1)
+    Time Complexity: O(log n)(n= size of array) - since we must do 
+    Space Complexity: O(1) 
     '''
     # Edge case
     if left == None:
@@ -80,7 +84,6 @@ def binary_search_recursive(array, item, left=None, right=None):
         right = len(array) - 1
 
     middle = int((left + right)/2)
-
     # Base cases
     if left > right:
         return None
