@@ -65,22 +65,23 @@ class TestPalindromes(unittest.TestCase):
         assert is_palindrome('A man, a plan, a canal - Panama!') is True
 
     def test_is_palindrome_with_non_palindromic_strings(self):
-        # examples of non-palindromic strings that should be rejected
+
+        #examples of non-palindromic strings that should be rejected
         assert is_palindrome('AB') is False  # even length
         assert is_palindrome('ABC') is False  # odd length
         assert is_palindrome('AAB') is False
         assert is_palindrome('AABB') is False
         assert is_palindrome('AAABB') is False
         assert is_palindrome('AAABBB') is False
-        # assert is_palindrome('ABCZBA') is False
-        # assert is_palindrome('ABCCZA') is False
-        # assert is_palindrome('ABCCBZ') is False
-        # assert is_palindrome('ABCDZCBA') is False
-        # assert is_palindrome('ABCDDZBA') is False
-        # assert is_palindrome('ABCDDCZA') is False
-        # assert is_palindrome('ABCDDCBZ') is False
-        # assert is_palindrome('AAAAZAAA') is False
-        #assert is_palindrome('AAAAAAAZ') is False
+        assert is_palindrome('ABCZBA') is False
+        assert is_palindrome('ABCCZA') is False
+        assert is_palindrome('ABCCBZ') is False
+        assert is_palindrome('ABCDZCBA') is False
+        assert is_palindrome('ABCDDZBA') is False
+        assert is_palindrome('ABCDDCZA') is False
+        assert is_palindrome('ABCDDCBZ') is False
+        assert is_palindrome('AAAAZAAA') is False
+        assert is_palindrome('AAAAAAAZ') is False
 
 
 if __name__ == '__main__':

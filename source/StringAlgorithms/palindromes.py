@@ -6,7 +6,7 @@ import string
 # string.ascii_uppercase is 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 # string.ascii_letters is ascii_lowercase + ascii_uppercase
 
-
+LETTERS = frozenset(string.ascii_letters)
 def is_palindrome(text):
     """A string of characters is a palindrome if it reads the same forwards and
     backwards, ignoring punctuation, whitespace, and letter casing."""
@@ -24,17 +24,23 @@ def is_palindrome_iterative(text):
         Return:
             - Bool : a true or false value
         Time Complexity: O(n) where n the length of the string
-        Space Complexity : ??
+        Space Complexity : O(n) where n is the number of char in the string
     '''
 
-    translator = str.maketrans('', '', string.punctuation)
-    clean_string = text.translate(translator).replace(" ", "").lower()
+    # cleans up the text input
+    translator = str.maketrans('', '', string.punctuation) # O(p) time and space where p is the # of punc
+    clean_string = text.translate(translator).replace(" ", "") #  2n = O(n) 
+
+    # grab the left and right bound to keep track 
     left = 0
     right = len(clean_string) - 1
 
-    while left < right:
-        if clean_string[left] != clean_string[right]:
+    while left < right: #(n/2) iteration = O(n)
+        if clean_string[left].lower() != clean_string[right].lower(): # O(1)
+            # Return false if the element at the left and right aren't equivalent
             return False
+
+        # Adjust the bounds for the next iteration
         left += 1
         right -= 1
 
@@ -54,28 +60,27 @@ def is_palindrome_recursive(text, left=None, right=None):
         Time Complexity : O(n log n) because we are calling the function n/2 and replace, lower are O(n)
         Space Complexity : O(n) since we are re-copying a cleaner text input
     '''
-    # TODO : Fix this and pass last test cases
-    translator = str.maketrans('', '', string.punctuation)
-    text = text.translate(translator).replace(" ", "").lower()
-
     # edge cases
-    if len(text) == 0:
-        return True
-
     if left == None:
         left = 0
         right = len(text) - 1 
 
-    if left > right:
-        return None
+    if left >= right:
+        return True
 
-    # base case
+    # Skips oiver unwanted characters(e.g : ?,!,.)
+    if text[left] not in LETTERS:
+        return is_palindrome_recursive(text, left + 1, right)
+    if text[right] not in LETTERS:
+        return is_palindrome_recursive(text, left, right -1 )
+
     if text[left] != text[right]:
-        return False
-    
-    # recursive case
-    is_palindrome_recursive(text, left + 1, right - 1)
-    return True
+    # checks if the issue is with capitalization
+        if text[left].lower() != text[right].lower():
+            return False
+ 
+    return is_palindrome_recursive(text, left + 1, right - 1)
+
 
 def main():
 
