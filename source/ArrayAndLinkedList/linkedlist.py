@@ -187,8 +187,17 @@ class LinkedList(object):
         Worst case running time: ??? under what conditions? [TODO]"""
         # TODO: Find the node containing the given old_item and replace its
         # data with new_item, without creating a new node object
-        pass
+        
+        curr_node = self.head
+        while curr_node is not None:
+            if curr_node.data == old_item:
+                curr_node.data = new_item
+                return 
 
+            curr_node = curr_node.next
+
+        raise ValueError('{} Not in LinkedList'.format(new_item))
+            
     def delete(self, item):
         """Delete the given item from this linked list, or raise ValueError.
         Best case running time: ??? under what conditions? [TODO]
@@ -217,18 +226,21 @@ class LinkedList(object):
                 previous.next = node.next
                 # Unlink the found node from its next node
                 node.next = None
+                self.size -= 1
             # Check if we found a node at the head
             if node is self.head:
                 # Update head to the next node
                 self.head = node.next
                 # Unlink the found node from the next node
                 node.next = None
+                self.size -= 1
             # Check if we found a node at the tail
             if node is self.tail:
                 # Check if there is a node before the found node
                 if previous is not None:
                     # Unlink the previous node from the found node
                     previous.next = None
+                    self.size -= 1
                 # Update tail to the previous node regardless
                 self.tail = previous
         else:
