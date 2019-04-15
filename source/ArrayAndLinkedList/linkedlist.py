@@ -112,7 +112,6 @@ class LinkedList(object):
         if index == 0:
             self.prepend(item)
             return
-
         # Appending the element since the index is equivalent to the size of the ll
         if index == self.size:
             self.append(item)
@@ -192,8 +191,6 @@ class LinkedList(object):
         using the same node, or raise ValueError if old_item is not found.
         Best case running time: O(1) if old_item is contained on head or tail node
         Worst case running time: O(n) if the old_item is contained before the tail"""
-        # TODO: Find the node containing the given old_item and replace its
-        # data with new_item, without creating a new node object
         
         # Replace the head's data to the new one if it matches the old_item
         if self.head.data == old_item:
