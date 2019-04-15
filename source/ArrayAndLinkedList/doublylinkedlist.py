@@ -115,9 +115,11 @@ class DoublyLinkedList(object):
             # checks if the list is empty
         if self.is_empty():
             raise ValueError("Empty List")
-        # check if item is in head
+        
         if self.head.data == data:
+            # unlink the old head, connect to next node, and decrement count
             self.head = self.head.next
+            self.counter -= 1
             #checks if the head and tail point to same object(ll with one item)
             if self.tail.data == data:
                 self.tail = None
