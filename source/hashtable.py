@@ -12,7 +12,6 @@ class HashTable(object):
         self.buckets = [LinkedList() for i in range(init_size)]
         self.size = 0  # Number of key-value entries
         
-
     def __str__(self):
         """Return a formatted string representation of this hash table."""
         items = ['{!r}: {!r}'.format(key, val) for key, val in self.items()]
@@ -71,7 +70,7 @@ class HashTable(object):
             item_count += bucket.length()
         return item_count
         # Equivalent to this list comprehension:
-        return sum(bucket.length() for bucket in self.buckets)
+        #return sum(bucket.length() for bucket in self.buckets)
 
     def contains(self, key):
         """Return True if this hash table contains the given key, or False.
