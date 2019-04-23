@@ -1,7 +1,7 @@
 
 #!python
 
-from __future__ import division
+#rom __future__ import division
 from linkedlist import LinkedList
 
 
@@ -38,7 +38,7 @@ class HashTable(object):
         # Collect all keys in each of the buckets
         all_keys = []
         for bucket in self.buckets:
-            for key, value in bucket.items():
+            for key, _ in bucket.items():
                 all_keys.append(key)
         return all_keys
 
@@ -48,7 +48,7 @@ class HashTable(object):
         # Collect all values in each of the buckets
         all_values = []
         for bucket in self.buckets:
-            for key, value in bucket.items():
+            for _, value in bucket.items():
                 all_values.append(value)
         return all_values
 
@@ -157,8 +157,7 @@ class HashTable(object):
 
         # Grab all our entries, re-instanciate our buckets, and reseting the size
         temp_entries = self.items()
-        self.buckets = [LinkedList() for i in range(new_size)]
-        self.size = 0
+        self.__init__(new_size)
 
         # inserting each entry(key-value) in our buckets
         for entry in temp_entries:
