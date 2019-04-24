@@ -19,6 +19,9 @@ class Sets(object):
             Time Complexity(WC) : 
             Space Complexity(WC) : 
         '''
+        # check if the element is already in the set to avoid duplicates
+        if self.contains(element):
+            return
         return self.hashTable.contains(element)
     
     def add(self, element):
