@@ -100,26 +100,24 @@ class BinarySearchTree(object):
         TODO: Best case running time: ??? under what conditions?
         TODO: Worst case running time: ??? under what conditions?"""
 
+        new_node = BinaryTreeNode(item)
+
         # Handle the case where the tree is empty
         if self.is_empty():
-            new_node = BinaryTreeNode(item)
             self.root = new_node
             self.size += 1
             return 
 
         # Find the parent node of where the given item should be inserted
         parent = self._find_parent_node_recursive(item, self.root)
-        if parent is None:
-            parent = self.root
 
+        # Check if the given item should be inserted left or right of parent node
         if item < parent.data:
-            new_node = BinaryTreeNode(item)
             parent.left = new_node
 
-        # Check if the given item should be inserted right of parent node
         elif item > parent.data:
-            new_node = BinaryTreeNode(item)
             parent.right = new_node
+
         self.size += 1
 
     def _find_node_iterative(self, item):
@@ -207,7 +205,7 @@ class BinarySearchTree(object):
 
         # Return Not found if starting node is None
         if node is None:
-            return None
+            return parent
             
         if item == node.data:
             # Return the parent of the found node
@@ -243,12 +241,14 @@ class BinarySearchTree(object):
         Start at the given node and visit each node with the given function.
         TODO: Running time: ??? Why and under what conditions?
         TODO: Memory usage: ??? Why and under what conditions?"""
-        # TODO: Traverse left subtree, if it exists
-        ...
-        # TODO: Visit this node's data with given function
-        ...
-        # TODO: Traverse right subtree, if it exists
-        ...
+
+        if node.left:
+            self._traverse_in_order_recursive(node.left, visit)
+        visit(node.data)
+
+        if node.right:
+            self._traverse_in_order_recursive(node.right, visit)
+
 
     def _traverse_in_order_iterative(self, node, visit):
         """Traverse this binary tree with iterative in-order traversal (DFS).
