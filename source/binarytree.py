@@ -124,24 +124,24 @@ class BinarySearchTree(object):
         """Return the node containing the given item in this binary search tree,
         or None if the given item is not found. Search is performed iteratively
         starting from the root node.
-        Best case running time: ??? under what conditions?
-        TODO: Worst case running time: """
+        Best case running time: O(1) if item is in the root
+        Worst case running time: O(log n) where n is the # of nodes"""
         # Start with the root node
 
         node = self.root
         # Loop until we descend past the closest leaf node
         while node is not None:
-            # TODO: Check if the given item matches the node's data
+            # Check if the given item matches the node's data
             if item == node.data:
                 # Return the found node
                 return node
-            # TODO: Check if the given item is less than the node's data
+            # Check if the given item is less than the node's data
             elif item < node.data:
-                # TODO: Descend to the node's left child
+                # Descend to the node's left child
                 node = node.left
-            # TODO: Check if the given item is greater than the node's data
+            # Check if the given item is greater than the node's data
             elif item > node.data:
-                # TODO: Descend to the node's right child
+                # Descend to the node's right child
                 node = node.right
         # Not found
         return None
