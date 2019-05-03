@@ -150,8 +150,8 @@ class BinarySearchTree(object):
         """Return the node containing the given item in this binary search tree,
         or None if the given item is not found. Search is performed recursively
         starting from the given node (give the root node to start recursion).
-        TODO: Best case running time: ??? under what conditions?
-        TODO: Worst case running time: ??? under what conditions?"""
+        Best case running time: O(log n) where n is # of nodes
+        Worst case running time: O(1) if item is in the root"""
 
         # Return Not found if starting node is None
         if node is None:
@@ -173,25 +173,25 @@ class BinarySearchTree(object):
         (or the parent node of where the given item would be if inserted)
         in this tree, or None if this tree is empty or has only a root node.
         Search is performed iteratively starting from the root node.
-        TODO: Best case running time: ??? under what conditions?
-        TODO: Worst case running time: ??? under what conditions?"""
+        Best case running time: O(log n) where n is # of nodes
+        Worst case running time: O(1) if item is in the root"""
         # Start with the root node and keep track of its parent
         node = self.root
         parent = None
         # Loop until we descend past the closest leaf node
         while node is not None:
-            # TODO: Check if the given item matches the node's data
+            # Check if the given item matches the node's data
             if item == node.data:
                 # Return the parent of the found node
                 return parent
-            # TODO: Check if the given item is less than the node's data
+            # Check if the given item is less than the node's data
             elif item < node.data:
-                # TODO: Update the parent and descend to the node's left child
+                # Update the parent and descend to the node's left child
                 parent = node
                 node = node.left
-            # TODO: Check if the given item is greater than the node's data
+            # Check if the given item is greater than the node's data
             elif item > node.data:
-                # TODO: Update the parent and descend to the node's right child
+                # Update the parent and descend to the node's right child
                 parent = node
                 node = node.right
         # Not found
