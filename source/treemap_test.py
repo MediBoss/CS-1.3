@@ -10,3 +10,10 @@ class TreeMapTest(unittest.TestCase):
         treepMap = TreeMap()
 
         assert treepMap.size == 0
+
+
+    def test_set(self):
+
+        treepMap = TreeMap()
+
+        assert treepMap.set('Medi', 123) == False

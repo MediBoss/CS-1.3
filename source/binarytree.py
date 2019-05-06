@@ -243,22 +243,39 @@ class BinarySearchTree(object):
         Start at the given node and visit each node with the given function.
         Running time: O(n) (n is # of nodes) Worst case since we are visiting every node.
         Memory usage: O(1) since we are not creating any new space in memory"""
+        if node is not None:
+            if node.left:
+                self._traverse_in_order_recursive(node.left, visit)
+            visit(node.data)
 
-        if node.left:
-            self._traverse_in_order_recursive(node.left, visit)
-        visit(node.data)
-
-        if node.right:
-            self._traverse_in_order_recursive(node.right, visit)
+            if node.right:
+                self._traverse_in_order_recursive(node.right, visit)
 
 
     def _traverse_in_order_iterative(self, node, visit):
         """Traverse this binary tree with iterative in-order traversal (DFS).
         Start at the given node and visit each node with the given function.
-        TODO: Running time: ??? Why and under what conditions?
-        TODO: Memory usage: ??? Why and under what conditions?"""
-        # TODO: Traverse in-order without using recursion (stretch challenge)
+        Running time: O(n) (n is # of nodes) Worst case since we are visiting every node.
+        TODO: Memory usage: O(1) since we are not creating any new space in memory"""
 
+        # Variables and pointers to keep track of nodes and status as we traverse
+        curr_node = node
+        stack = LinkedStack()
+        done = False
+
+        while not done: # Traverse until the leaf on the far right
+
+            if curr_node is not done:
+                stack.push(curr_node) # Keep track of this current node for future use
+                curr_node = curr_node.left # Go to the left subtree
+
+            else:
+                if not stack.is_empty():
+                    curr_node = stack.pop() # grab the parent node that was pushed
+                    visit(curr_node) # visit it's data
+                    curr_node = curr_node.right # go to the right tree
+                else:
+                    done = True # The entire tree has been traversed in order
 
     def items_pre_order(self):
         """Return a pre-order list of all items in this binary search tree."""
