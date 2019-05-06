@@ -242,12 +242,14 @@ class BinarySearchTree(object):
         """Traverse this binary tree with recursive in-order traversal (DFS).
         Start at the given node and visit each node with the given function.
         Running time: O(n) (n is # of nodes) Worst case since we are visiting every node.
-        Memory usage: O(1) since we are not creating any new space in memory"""
+        Memory usage: O(n) worst case if unbalanced - O(log n) if balanced since we will push n nodes in the recursive stack"""
         if node is not None:
             if node.left:
+                # go to the left subtree
                 self._traverse_in_order_recursive(node.left, visit)
+            # visit the current node by appending it
             visit(node.data)
-
+            # 
             if node.right:
                 self._traverse_in_order_recursive(node.right, visit)
 
@@ -256,7 +258,7 @@ class BinarySearchTree(object):
         """Traverse this binary tree with iterative in-order traversal (DFS).
         Start at the given node and visit each node with the given function.
         Running time: O(n) (n is # of nodes) Worst case since we are visiting every node.
-        TODO: Memory usage: O(1) since we are not creating any new space in memory"""
+        Memory usage: O(n) worst case if unbalanced - O(log n) if balanced since we will push n nodes in the recursive stack"""
 
         # Variables and pointers to keep track of nodes and status as we traverse
         curr_node = node
@@ -268,11 +270,10 @@ class BinarySearchTree(object):
             if curr_node is not done:
                 stack.push(curr_node) # Keep track of this current node for future use
                 curr_node = curr_node.left # Go to the left subtree
-
             else:
                 if not stack.is_empty():
                     curr_node = stack.pop() # grab the parent node that was pushed
-                    visit(curr_node) # visit it's data
+                    visit(curr_node) # visit its data
                     curr_node = curr_node.right # go to the right tree
                 else:
                     done = True # The entire tree has been traversed in order
@@ -290,7 +291,7 @@ class BinarySearchTree(object):
         """Traverse this binary tree with recursive pre-order traversal (DFS).
         Start at the given node and visit each node with the given function.
         Running time: O(n) (n is # of nodes) Worst case since we are visiting every node.
-        Memory usage: O(1) since we are not creating any new space in memory"""
+        Memory usage: O(n) worst case if unbalanced - O(log n) if balanced since we will push n nodes in the recursive stack"""
 
         visit(node.data)
         if node.left:
@@ -349,7 +350,7 @@ class BinarySearchTree(object):
         """Traverse this binary tree with iterative level-order traversal (BFS).
         Start at the given node and visit each node with the given function.
         Running time: O(n) (n is # of nodes) Worst case since we are visiting every node.
-        Memory usage: O(n) where is the amount of node we are enqueing in the queue"""
+        Memory usage: O(n) because the biggest amount of """
 
         # Create queue to store nodes not yet traversed in level-order
         queue = Queue()
