@@ -20,8 +20,6 @@ class Sets(object):
             Space Complexity(WC) : 
         '''
         # check if the element is already in the set to avoid duplicates
-        if self.contains(element):
-            return
         return self.hashTable.contains(element)
     
     def add(self, element):
@@ -58,11 +56,10 @@ class Sets(object):
         '''
         
         array_one = self.hashTable.keys()
-        array_two = other_set.hashTable.keys()
         intersection_list = list()
 
         for element in array_one:
-            if element in array_two:
+            if other_set.contains(element):
                 intersection_list.append(element)
 
         return intersection_list
@@ -74,11 +71,10 @@ class Sets(object):
         '''
         
         difference_result = list()
-        intersecting_elements = self.intersection(other_set)
         first_set_keys = self.hashTable.keys()
 
         for element in first_set_keys:
-            if element not in intersecting_elements:
+            if other_set.contains(element) == False:
                 difference_result.append(element)
 
         return difference_result
