@@ -33,6 +33,14 @@ class LinkedList(object):
         """Return a string representation of this linked list."""
         return 'LinkedList({!r})'.format(self.items())
 
+    def __iter__(self):
+        """ Add ability to iterate over a linkedlist"""
+
+        curr = self.head
+        while curr is not None:
+            yield curr.data
+            curr = curr.next
+
     def items(self):
         """Return a list of all items in this linked list.
         Best and worst case running time: Theta(n) for n items in the list

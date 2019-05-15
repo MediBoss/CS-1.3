@@ -46,11 +46,12 @@ class Sets(object):
             Time Complexity(WC) : 
             Space Complexity(WC) : 
         '''
+        
         return self.hashTable.keys() + other_set.hashTable.keys()
 
     def intersection(self, other_set):
 
-        ''' Return ONLY elements that are seen in both sets
+        ''' Return a set of ONLY elements that are seen in both sets 
             Time Complexity(WC) : 
             Space Complexity(WC) : 
         '''
