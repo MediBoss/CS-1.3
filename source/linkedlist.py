@@ -34,7 +34,7 @@ class LinkedList(object):
         return 'LinkedList({!r})'.format(self.items())
 
     def __iter__(self):
-        """ Add ability to iterate over a linkedlist"""
+        """ Add ability to iterate over a linkedlist """
 
         curr = self.head
         while curr is not None:
